@@ -2,7 +2,7 @@ import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
 export default function Header() {
-  // const element = <FontAwesomeIcon icon={faBed} />;
+  // inistaling font awesome
   return (
     <div className="header">
       <div className="headerList">
