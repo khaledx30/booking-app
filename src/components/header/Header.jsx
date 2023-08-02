@@ -1,6 +1,8 @@
 import {
   faBed,
+  faCalendarDays,
   faCar,
+  faPerson,
   faPlane,
   faTaxi,
 } from "@fortawesome/free-solid-svg-icons";
@@ -30,6 +32,30 @@ export default function Header() {
           <div className="headerListItem">
             <FontAwesomeIcon icon={faTaxi} />
             <span>Airport taxis</span>
+          </div>
+        </div>
+        <h1 className="headerTitle">A lifetime of discounts? It's Genius.</h1>
+        <p className="headerDesc">
+          Get rewarded for your travels – unlock instant savings of 10% or more
+          with a free Lamabooking account
+        </p>
+        <button className="headerBtn">sign in / Register</button>
+        <div className="headerSearch">
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faBed} className="headerIcon" />
+            <input
+              type="text"
+              placeholder="where are you going"
+              className="headerSearchInput"
+            />
+          </div>
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+            <span className="headerSearchText">date to date</span>
+          </div>
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+            <span className="headerSearchText">2 Adults 2 children 1 room</span>
           </div>
         </div>
       </div>
