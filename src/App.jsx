@@ -7,7 +7,6 @@ import Home from "./pages/Home/Home";
 function App() {
   return (
     <>
-      {/* <div>heloo app</div> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
