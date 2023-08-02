@@ -13,8 +13,23 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { useState } from "react";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
+// import Test from "../test";
 export default function Header() {
   const [openDate, setOpenDate] = useState(false);
+
+  // useEffect(() => {
+  //   let handler = (e) => {
+  //     console.log(dateRef.current);
+  //     if (!dateRef.current.contains(e.target)) setOpenDate(false);
+  //   };
+
+  //   document.addEventListener("mousedown", handler);
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handler);
+  //   };
+  // });
+
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -88,6 +103,7 @@ export default function Header() {
             <span className="headerSearchText">2 Adults 2 children 1 room</span>
           </div>
         </div>
+        {/* <Test /> */}
       </div>
     </div>
   );
