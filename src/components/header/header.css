@@ -57,6 +57,7 @@
 }
 
 .headerSearchItem {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -74,4 +75,9 @@
 .headerSearchText {
   color: lightgray;
   cursor: pointer;
+}
+
+.date {
+  position: absolute;
+  top: 50px;
 }
