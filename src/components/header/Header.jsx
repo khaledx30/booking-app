@@ -31,7 +31,14 @@ export default function Header() {
     children: 1,
     room: 1,
   });
-
+  const handleOption = (name, operation) => {
+    setOption((prev) => {
+      return {
+        ...prev,
+        [name]: operation === "i" ? option[name] + 1 : option[name] - 1,
+      };
+    });
+  };
   useEffect(() => {
     function clicked(event) {
       if (!ref.current.contains(event.target) || event.key === "Escape") {
@@ -45,7 +52,6 @@ export default function Header() {
       document.removeEventListener("mousedown", clicked);
     };
   });
-  console.log(ref.current);
   return (
     <div className="header">
       <div className="headerContainer">
@@ -114,19 +120,33 @@ export default function Header() {
                 <li className="optionItem">
                   <span> Adult</span>
                   <div className="optionControler">
-                    <button>+</button>1<button>-</button>
+                    <button onClick={() => handleOption("adult", "i")}>
+                      +
+                    </button>
+                    {option.adult}
+                    <button onClick={() => handleOption("adult", "d")}>
+                      -
+                    </button>
                   </div>
                 </li>
                 <li className="optionItem">
                   <span>children</span>
                   <div className="optionControler">
-                    <button>+</button>1<button>-</button>
+                    <button onClick={() => handleOption("children", "i")}>
+                      +
+                    </button>
+                    {option.children}
+                    <button onClick={() => handleOption("children", "d")}>
+                      -
+                    </button>
                   </div>
                 </li>
                 <li className="optionItem">
                   <span>romm</span>
                   <div className="optionControler">
-                    <button>+</button>1<button>-</button>
+                    <button onClick={() => handleOption("room", "i")}>+</button>
+                    {option.room}
+                    <button onClick={() => handleOption("room", "d")}>-</button>
                   </div>
                 </li>
               </ul>
