@@ -109,8 +109,29 @@ export default function Header() {
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
             <span className="headerSearchText">{`${option.adult} Adults ${option.children} children ${option.room} room`}</span>
+            <div className="optionContianer">
+              <ul className="optionList">
+                <li className="optionItem">
+                  <span> Adult</span>
+                  <div className="optionControler">
+                    <button>+</button>1<button>-</button>
+                  </div>
+                </li>
+                <li className="optionItem">
+                  <span>children</span>
+                  <div className="optionControler">
+                    <button>+</button>1<button>-</button>
+                  </div>
+                </li>
+                <li className="optionItem">
+                  <span>romm</span>
+                  <div className="optionControler">
+                    <button>+</button>1<button>-</button>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div></div>
         </div>
         {/* <Test /> */}
       </div>

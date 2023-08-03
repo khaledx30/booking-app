@@ -11,7 +11,6 @@
   max-width: 1024px;
   margin: 20px 0 100px 0;
 }
-/* g */
 .headerList {
   display: flex;
   gap: 40px;
@@ -80,4 +79,32 @@
 .date {
   position: absolute;
   top: 50px;
+}
+
+.optionContainer {
+  position: absolute;
+  top: 21px;
+}
+
+.optionList {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 17px;
+  background-color: #f4f4f4;
+}
+
+.optionItem {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  gap: 20px;
+}
+
+.optionControler {
+  display: flex;
+  gap: 17px;
 }
