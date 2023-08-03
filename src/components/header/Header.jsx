@@ -16,8 +16,10 @@ import { format } from "date-fns";
 // import Test from "../test";
 export default function Header() {
   const [openDate, setOpenDate] = useState(false);
+  const [openOption, setOpenOption] = useState(false);
 
   let ref = useRef();
+  let optionRef = useRef();
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -43,6 +45,9 @@ export default function Header() {
     function clicked(event) {
       if (!ref.current.contains(event.target) || event.key === "Escape") {
         setOpenDate(false);
+      }
+      if (!optionRef.current.contains(event.target) || event.key === "Escape") {
+        setOpenOption(false);
       }
     }
     document.addEventListener("mousedown", clicked);
@@ -112,45 +117,54 @@ export default function Header() {
               />
             )}
           </div>
-          <div className="headerSearchItem">
+          <div className="headerSearchItem" ref={optionRef}>
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <span className="headerSearchText">{`${option.adult} Adults ${option.children} children ${option.room} room`}</span>
-            <div className="optionContianer">
-              <ul className="optionList">
-                <li className="optionItem">
-                  <span> Adult</span>
-                  <div className="optionControler">
-                    <button onClick={() => handleOption("adult", "i")}>
-                      +
-                    </button>
-                    {option.adult}
-                    <button onClick={() => handleOption("adult", "d")}>
-                      -
-                    </button>
-                  </div>
-                </li>
-                <li className="optionItem">
-                  <span>children</span>
-                  <div className="optionControler">
-                    <button onClick={() => handleOption("children", "i")}>
-                      +
-                    </button>
-                    {option.children}
-                    <button onClick={() => handleOption("children", "d")}>
-                      -
-                    </button>
-                  </div>
-                </li>
-                <li className="optionItem">
-                  <span>romm</span>
-                  <div className="optionControler">
-                    <button onClick={() => handleOption("room", "i")}>+</button>
-                    {option.room}
-                    <button onClick={() => handleOption("room", "d")}>-</button>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <span
+              onClick={() => setOpenOption(!openOption)}
+              className="headerSearchText"
+            >{`${option.adult} Adults ${option.children} children ${option.room} room`}</span>
+            {openOption && (
+              <div className="optionContianer">
+                <ul className="optionList">
+                  <li className="optionItem">
+                    <span> Adult</span>
+                    <div className="optionControler">
+                      <button onClick={() => handleOption("adult", "i")}>
+                        +
+                      </button>
+                      {option.adult}
+                      <button onClick={() => handleOption("adult", "d")}>
+                        -
+                      </button>
+                    </div>
+                  </li>
+                  <li className="optionItem">
+                    <span>children</span>
+                    <div className="optionControler">
+                      <button onClick={() => handleOption("children", "i")}>
+                        +
+                      </button>
+                      {option.children}
+                      <button onClick={() => handleOption("children", "d")}>
+                        -
+                      </button>
+                    </div>
+                  </li>
+                  <li className="optionItem">
+                    <span>romm</span>
+                    <div className="optionControler">
+                      <button onClick={() => handleOption("room", "i")}>
+                        +
+                      </button>
+                      {option.room}
+                      <button onClick={() => handleOption("room", "d")}>
+                        -
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
         {/* <Test /> */}
