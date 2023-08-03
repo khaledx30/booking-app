@@ -31,10 +31,7 @@ export default function Header() {
       if (!ref.current.contains(event.target)) {
         setOpenDate(false);
       }
-
-      console.log(ref.current.contains(event.target));
     }
-
     document.addEventListener("mousedown", clicked);
 
     return () => {
