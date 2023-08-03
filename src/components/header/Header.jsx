@@ -26,19 +26,26 @@ export default function Header() {
     },
   ]);
 
+  const [option, setOption] = useState({
+    adult: 1,
+    children: 1,
+    room: 1,
+  });
+
   useEffect(() => {
     function clicked(event) {
-      if (!ref.current.contains(event.target)) {
+      if (!ref.current.contains(event.target) || event.key === "Escape") {
         setOpenDate(false);
       }
     }
     document.addEventListener("mousedown", clicked);
+    document.addEventListener("keydown", clicked);
 
     return () => {
       document.removeEventListener("mousedown", clicked);
     };
   });
-
+  console.log(ref.current);
   return (
     <div className="header">
       <div className="headerContainer">
@@ -101,8 +108,9 @@ export default function Header() {
           </div>
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <span className="headerSearchText">2 Adults 2 children 1 room</span>
+            <span className="headerSearchText">{`${option.adult} Adults ${option.children} children ${option.room} room`}</span>
           </div>
+          <div></div>
         </div>
         {/* <Test /> */}
       </div>
