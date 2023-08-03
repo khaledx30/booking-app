@@ -8,28 +8,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import { useState } from "react";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 // import Test from "../test";
 export default function Header() {
   const [openDate, setOpenDate] = useState(false);
 
-  // useEffect(() => {
-  //   let handler = (e) => {
-  //     console.log(dateRef.current);
-  //     if (!dateRef.current.contains(e.target)) setOpenDate(false);
-  //   };
-
-  //   document.addEventListener("mousedown", handler);
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handler);
-  //   };
-  // });
-
+  let ref = useRef();
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -37,6 +25,22 @@ export default function Header() {
       key: "selection",
     },
   ]);
+
+  useEffect(() => {
+    function clicked(event) {
+      if (!ref.current.contains(event.target)) {
+        setOpenDate(false);
+      }
+
+      console.log(ref.current.contains(event.target));
+    }
+
+    document.addEventListener("mousedown", clicked);
+
+    return () => {
+      document.removeEventListener("mousedown", clicked);
+    };
+  });
 
   return (
     <div className="header">
@@ -78,7 +82,7 @@ export default function Header() {
               className="headerSearchInput"
             />
           </div>
-          <div className="headerSearchItem">
+          <div className="headerSearchItem" ref={ref}>
             <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
             <span
               onClick={() => setOpenDate(!openDate)}
