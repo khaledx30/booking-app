@@ -166,6 +166,9 @@ export default function Header() {
               </div>
             )}
           </div>
+          <div className="headerSearchItem">
+            <button className="headerBtn">Search</button>
+          </div>
         </div>
         {/* <Test /> */}
       </div>
