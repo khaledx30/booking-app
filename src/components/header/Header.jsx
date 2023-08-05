@@ -27,7 +27,7 @@ export default function Header() {
       key: "selection",
     },
   ]);
-
+  // s
   const [option, setOption] = useState({
     adult: 1,
     children: 1,
