@@ -27,7 +27,7 @@ export default function Header() {
       key: "selection",
     },
   ]);
-  // s
+  //
   const [option, setOption] = useState({
     adult: 1,
     children: 1,
@@ -37,7 +37,12 @@ export default function Header() {
     setOption((prev) => {
       return {
         ...prev,
-        [name]: operation === "i" ? option[name] + 1 : option[name] - 1,
+        [name]:
+          operation === "i"
+            ? option[name] + 1
+            : option[name] !== 0
+            ? option[name] - 1
+            : 0,
       };
     });
   };
