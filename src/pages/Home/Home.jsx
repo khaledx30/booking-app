@@ -7,6 +7,7 @@ export default function About() {
       <div className={styles.color}>
         <Navbar />
         <Header type={true} />
+        <div className="homeContainer"></div>
       </div>
     </>
   );
