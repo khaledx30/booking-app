@@ -6,7 +6,7 @@ export default function About() {
     <>
       <div className={styles.color}>
         <Navbar />
-        <Header />
+        <Header type={true} />
       </div>
     </>
   );
