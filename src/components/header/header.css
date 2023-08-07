@@ -80,11 +80,13 @@
 .date {
   position: absolute;
   top: 50px;
+  z-index: 2;
 }
 
 .optionContianer {
   position: absolute;
   top: 21px;
+  z-index: 2;
 }
 
 .optionList {
