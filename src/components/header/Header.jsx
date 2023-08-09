@@ -87,7 +87,7 @@ export default function Header({ type }) {
             <span>Airport taxis</span>
           </div>
         </div>
-        {type && (
+        {type !== false && (
           <div className="Text">
             <h1 className="headerTitle">
               A lifetime of discounts? It's Genius.
