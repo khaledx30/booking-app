@@ -13,7 +13,7 @@ import "react-date-range/dist/theme/default.css";
 import { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
-
+// header
 export default function Header({ type }) {
   const [openDate, setOpenDate] = useState(false);
   const [openOption, setOpenOption] = useState(false);
@@ -61,7 +61,7 @@ export default function Header({ type }) {
     return () => {
       document.removeEventListener("mousedown", clicked);
     };
-  });
+  }, []);
   return (
     <div className="header">
       <div className="headerContainer">
