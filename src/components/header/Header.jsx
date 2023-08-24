@@ -59,6 +59,7 @@ export default function Header({ type }) {
     document.addEventListener("keydown", clicked);
 
     return () => {
+      document.addEventListener("keydown", clicked);
       document.removeEventListener("mousedown", clicked);
     };
   }, []);
