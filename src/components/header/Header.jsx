@@ -13,7 +13,7 @@ import "react-date-range/dist/theme/default.css";
 import { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
-// header time is most thing we are looking for in
+// header time is most thing we are looking 
 export default function Header({ type }) {
   const [openDate, setOpenDate] = useState(false);
   const [openOption, setOpenOption] = useState(false);
