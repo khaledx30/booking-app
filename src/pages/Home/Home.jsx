@@ -5,6 +5,7 @@ import Featured from "./../../components/featured/Featured";
 import PropertyList from "../../components/propertyList/propertyList";
 import FeaturedProperties from "./../../components/featuredProperties/featuredProperties";
 import MaillList from "../../components/mailList/MaillList";
+import Footer from "../../components/footer/Footer";
 export default function About() {
   return (
     <>
@@ -17,8 +18,9 @@ export default function About() {
           <PropertyList />
           <h1 className="homeTitle">Homes guests love</h1>
           <FeaturedProperties />
+          <MaillList />
+          <Footer />
         </div>
-        <MaillList />
       </div>
     </>
   );
