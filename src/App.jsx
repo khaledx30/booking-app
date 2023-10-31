@@ -3,11 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import List from "./pages/list/List";
 import Hotel from "./pages/hotel/Hotel";
 import Home from "./pages/Home/Home";
-
+// react-dom-router
 function App() {
   return (
     <>
-      {/* <div>heloo app</div> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
