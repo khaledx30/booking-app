@@ -12,11 +12,11 @@
 }
 
 .listSearch {
+  position: sticky;
   flex: 1;
   background-color: #febb02;
   padding: 10px;
   border-radius: 10px;
-  position: sticky;
   top: 10px;
   height: max-content;
 }
@@ -46,7 +46,7 @@
 .lsItem > span {
   height: 30px;
   padding: 5px;
-  background-color: white;
+  background-color: #555;
   display: flex;
   align-items: center;
   cursor: pointer;

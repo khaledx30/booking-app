@@ -17,16 +17,18 @@ import { useNavigate } from "react-router-dom";
 // it working on the lap ????
 // header time is most thing we are looking
 export default function Header({ type }) {
+  const [destination, setDestaination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [openOption, setOpenOption] = useState(false);
   const navGaite = useNavigate();
 
   function handelSearch() {
-    navGaite("/hotels", { state: {} });
+    navGaite("/hotels", { state: { destination, date, option } });
   }
 
   let ref = useRef();
   let optionRef = useRef();
+
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -34,12 +36,13 @@ export default function Header({ type }) {
       key: "selection",
     },
   ]);
-  //
+
   const [option, setOption] = useState({
     adult: 1,
     children: 1,
     room: 1,
   });
+
   const handleOption = (name, operation) => {
     setOption((prev) => {
       return {
@@ -53,9 +56,14 @@ export default function Header({ type }) {
       };
     });
   };
+
   useEffect(() => {
     function clicked(event) {
-      if (!ref.current.contains(event.target) || event.key === "Escape") {
+      if (
+        !ref.current.contains(event.target) ||
+        event.key === "Escape" ||
+        event.target == "undefined"
+      ) {
         setOpenDate(false);
       }
       if (!optionRef.current.contains(event.target) || event.key === "Escape") {
@@ -66,8 +74,8 @@ export default function Header({ type }) {
     document.addEventListener("keydown", clicked);
 
     return () => {
-      document.addEventListener("keydown", clicked);
       document.removeEventListener("mousedown", clicked);
+      document.removeEventListener("keydown", clicked);
     };
   }, []);
   return (
@@ -115,6 +123,7 @@ export default function Header({ type }) {
                 type="text"
                 placeholder="where are you going"
                 className="headerSearchInput"
+                onChange={(e) => setDestaination(e.target.value)}
               />
             </div>
             <div className="headerSearchItem" ref={ref}>
