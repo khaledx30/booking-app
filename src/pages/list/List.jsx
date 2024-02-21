@@ -1,115 +1,100 @@
-import { useLocation } from "react-router-dom";
-import Navbar from "./../../components/Navbar/Navbar";
-import Header from "./../../components/header/Header";
-import "./list.css";
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
+import Navbar from "./../../components/Navbar/Navbar";
+import Header from "./../../components/header/Header";
 import SearchItem from "../../components/searchItem/SearchItem";
+import "./list.css";
 
 export default function List() {
-  const location = useLocation();
-  const [destination, setDestaination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
-  const [option, setOption] = useState(location.state.option);
+  // Retrieve location state
+  const { destination, date, option } = useLocation().state;
+
+  // State variables
   const [openDate, setOpenDate] = useState(false);
-  let ref = useRef();
+  const [selectedDate, setSelectedDate] = useState(date);
+  const dateRangeRef = useRef();
+
+  // Close date picker when clicking outside or pressing Escape key
   useEffect(() => {
-    function clicked(event) {
-      if (!ref.current.contains(event.target) || event.key === "Escape") {
+    function handleOutsideClickOrEscape(event) {
+      if (
+        !dateRangeRef.current.contains(event.target) ||
+        event.key === "Escape"
+      ) {
         setOpenDate(false);
       }
     }
-    document.addEventListener("mousedown", clicked);
-    document.addEventListener("keydown", clicked);
+    document.addEventListener("mousedown", handleOutsideClickOrEscape);
+    document.addEventListener("keydown", handleOutsideClickOrEscape);
 
     return () => {
-      document.removeEventListener("mousedown", clicked);
-      document.removeEventListener("keydown", clicked);
+      document.removeEventListener("mousedown", handleOutsideClickOrEscape);
+      document.removeEventListener("keydown", handleOutsideClickOrEscape);
     };
   }, []);
+
+  // Function to render option input fields dynamically
+  const renderOptionInput = (key, value) => (
+    <div className="lsOptionItem" key={key}>
+      <span className="lsOptionText">{key}</span>
+      <input
+        type="number"
+        min={key === "Adult" ? 1 : 0}
+        className="lsOptionInput"
+        placeholder={value}
+      />
+    </div>
+  );
+
   return (
     <div>
-      <Navbar></Navbar>
-      <Header></Header>
+      <Navbar />
+      <Header />
       <div className="listContainer">
         <div className="listWrapper">
           <div className="listSearch">
             <h1 className="lsTitle">Search</h1>
+            {/* Destination input field */}
             <div className="lsItem">
               <label className="label">Destination</label>
               <input type="text" placeholder={destination} />
             </div>
-            <div className="lsItem" ref={ref}>
+            {/* Date range picker */}
+            <div className="lsItem" ref={dateRangeRef}>
               <label>Check-in Date</label>
-              <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                date[0].startDate,
-                "MM/dd/yyyy"
-              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+              <span onClick={() => setOpenDate(!openDate)}>
+                {`${format(
+                  selectedDate[0].startDate,
+                  "MM/dd/yyyy"
+                )} to ${format(selectedDate[0].endDate, "MM/dd/yyyy")}`}
+              </span>
               {openDate && (
                 <DateRange
-                  onChange={(item) => setDate([item.selection])}
+                  onChange={(item) => setSelectedDate([item.selection])}
                   minDate={new Date()}
-                  ranges={date}
+                  ranges={selectedDate}
                 />
               )}
-              <div className="lsItem">
-                <label>Options</label>
-                <div className="lsOptions">
-                  <div className="lsOptionItem">
-                    <span className="lsOptionText">
-                      Min price <small>per night</small>
-                    </span>
-                    <input type="number" className="lsOptionInput" min={0} />
-                  </div>
-                  <div className="lsOptionItem">
-                    <span className="lsOptionText">
-                      Max price <small>per night</small>
-                    </span>
-                    <input type="number" className="lsOptionInput" min={0} />
-                  </div>
-                  <div className="lsOptionItem">
-                    <span className="lsOptionText">Adult</span>
-                    <input
-                      type="number"
-                      min={1}
-                      className="lsOptionInput"
-                      placeholder={option.adult}
-                    />
-                  </div>
-                  <div className="lsOptionItem">
-                    <span className="lsOptionText">Children</span>
-                    <input
-                      type="number"
-                      min={0}
-                      className="lsOptionInput"
-                      placeholder={option.children}
-                    />
-                  </div>
-                  <div className="lsOptionItem">
-                    <span className="lsOptionText">Room</span>
-                    <input
-                      type="number"
-                      min={1}
-                      className="lsOptionInput"
-                      placeholder={option.room}
-                    />
-                  </div>
-                </div>
+            </div>
+            {/* Options */}
+            <div className="lsItem">
+              <label>Options</label>
+              <div className="lsOptions">
+                {Object.entries(option).map(([key, value]) =>
+                  renderOptionInput(key, value)
+                )}
               </div>
             </div>
+            {/* Search button */}
             <button>Search</button>
           </div>
+          {/* Result list */}
           <div className="listResult">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            {[...Array(9)].map((_, index) => (
+              <SearchItem key={index} />
+            ))}
           </div>
         </div>
       </div>
